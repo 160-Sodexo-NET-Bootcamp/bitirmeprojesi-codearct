@@ -18,5 +18,6 @@ namespace Core.Entities.Concrete
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpiration { get; set; }
         public bool Status { get; set; }
+        public bool Blocked { get; set; }
     }
 }

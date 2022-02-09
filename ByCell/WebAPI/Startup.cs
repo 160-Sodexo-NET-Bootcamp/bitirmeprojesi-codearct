@@ -1,6 +1,12 @@
+using Business.Abstract;
+using Business.Concrete;
+using Core.Security.JWT;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,10 +33,49 @@ namespace WebAPI
         {
 
             services.AddControllers();
+
+            //Swagger Configuration
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "ByCell",
+                    Description = "PatikaDev Sodexo .Net Core Bootcamp Bitirme Projesi",
+                    Version = "v1",
+                });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Lütfen token giriniz",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement{
+                    {
+                        new OpenApiSecurityScheme{
+                            Reference=new OpenApiReference{
+                                Type=ReferenceType.SecurityScheme,
+                                Id="Bearer"
+                            }
+                        },
+                        new string[]{}
+                    }
+                });
             });
+
+            //Database
+            services.AddDbContext<ByCellDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //Dependencies
+            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
+            services.AddScoped<ITokenHelper, TokenHelper>();
+            services.AddScoped<IUserDal, EfUserDal>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +85,7 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ByCell v1"));
             }
 
             app.UseRouting();
