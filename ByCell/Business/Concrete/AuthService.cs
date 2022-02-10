@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.DTOs.UserDTOs;
+using Business.ValidationRules.FluentValidation.UserValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Results;
 using Core.Security.Hashing;
@@ -24,6 +26,7 @@ namespace Business.Concrete
             _tokenHelper = tokenHelper;
         }
 
+        [ValidationAspect(typeof(UserForRegisterValidator))]
         public IResult Register(UserForRegisterDto userForRegisterDto)
         {
             byte[] passwordHash, passwordSalt;
@@ -50,6 +53,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserCreated);
         }
 
+        [ValidationAspect(typeof(UserForLoginValidator))]
         public IDataResult<AccessToken> Login(UserForLoginDto userForLoginDto)
         {
             var user = _userService.GetByMail(userForLoginDto.Email);

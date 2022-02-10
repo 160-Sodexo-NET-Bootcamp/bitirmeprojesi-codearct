@@ -3,6 +3,7 @@ using Business.Concrete;
 using Core.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -75,6 +76,11 @@ namespace WebAPI
             services.AddScoped<IUserDal, EfUserDal>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IMailService, MailService>();
+
+            //Hangfire
+            services.AddHangfire(config => config.UseSqlServerStorage(Configuration["ConnectionStrings:HangfireConnection"]));
+            services.AddHangfireServer();
 
         }
 
@@ -92,10 +98,16 @@ namespace WebAPI
 
             app.UseAuthorization();
 
+            //Hangfire => endpoint host:port/bycellhangfire 
+            app.UseHangfireDashboard("/bycellhangfire", new DashboardOptions
+            {
+                DashboardTitle = "ByCell Hangfire DashBoard"
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
+            });           
         }
     }
 }

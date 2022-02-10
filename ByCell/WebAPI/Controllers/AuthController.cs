@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using BackgroundJobs.Jobs;
+using Business.Abstract;
 using Business.DTOs.UserDTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,10 +41,11 @@ namespace WebAPI.Controllers
             {
                 return BadRequest(result);
             }
+            FireAndForgetJobs.SendMailRegisterJobs(userForRegisterDto.Email);
             return Ok(result);
         }
 
-        [HttpPost("refresh")]
+        [HttpPut("refresh")]
         public ActionResult RefreshToken(string existingRefreshToken)
         {
             var result = _authService.RefreshToken(existingRefreshToken);
