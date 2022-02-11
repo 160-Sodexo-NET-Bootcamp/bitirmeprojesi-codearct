@@ -9,7 +9,12 @@ namespace DataAccess.Abstract
     public interface IUnitOfWork : IDisposable
     {
         IUserDal Users { get; }
-        Task<bool> CommitAsync();
+        ICategoryDal Categories { get; }
+        IColorDal Colors { get; }
+        IOfferConfirmDal OfferConfirms { get; }
+        IProductBrandDal ProductBrands { get; }
+        IUsageStatusDal UsageStatuses { get; }
+        Task CommitAsync();
         void Commit();
     }
 }

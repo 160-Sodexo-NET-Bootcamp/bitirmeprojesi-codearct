@@ -30,3 +30,5 @@ D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Bus
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Business\bin\Debug\net5.0\Core.pdb
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Business\bin\Debug\net5.0\DataAccess.pdb
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Business\obj\Debug\net5.0\Business.csproj.CopyComplete
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Business\bin\Debug\net5.0\Entities.dll
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Business\bin\Debug\net5.0\Entities.pdb

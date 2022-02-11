@@ -70,14 +70,6 @@ namespace WebAPI
             services.AddDbContext<ByCellDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            //Dependencies
-            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
-            services.AddScoped<ITokenHelper, TokenHelper>();
-            services.AddScoped<IUserDal, EfUserDal>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IMailService, MailService>();
-
             //Hangfire
             services.AddHangfire(config => config.UseSqlServerStorage(Configuration["ConnectionStrings:HangfireConnection"]));
             services.AddHangfireServer();

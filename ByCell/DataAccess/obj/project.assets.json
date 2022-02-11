@@ -1651,6 +1651,19 @@
         "runtime": {
           "bin/placeholder/Core.dll": {}
         }
+      },
+      "Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entities.dll": {}
+        }
       }
     }
   },
@@ -5970,11 +5983,17 @@
       "type": "project",
       "path": "../Core/Core.csproj",
       "msbuildProject": "../Core/Core.csproj"
+    },
+    "Entities/1.0.0": {
+      "type": "project",
+      "path": "../Entities/Entities.csproj",
+      "msbuildProject": "../Entities/Entities.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Core >= 1.0.0"
+      "Core >= 1.0.0",
+      "Entities >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6008,6 +6027,9 @@
           "projectReferences": {
             "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Core\\Core.csproj": {
               "projectPath": "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Core\\Core.csproj"
+            },
+            "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Entities\\Entities.csproj": {
+              "projectPath": "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Entities\\Entities.csproj"
             }
           }
         }

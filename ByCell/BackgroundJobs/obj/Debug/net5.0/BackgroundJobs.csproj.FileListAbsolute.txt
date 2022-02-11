@@ -17,3 +17,5 @@ D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Bac
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\BackgroundJobs\bin\Debug\net5.0\Core.pdb
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\BackgroundJobs\bin\Debug\net5.0\DataAccess.pdb
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\BackgroundJobs\obj\Debug\net5.0\BackgroundJobs.csproj.CopyComplete
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\BackgroundJobs\bin\Debug\net5.0\Entities.dll
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\BackgroundJobs\bin\Debug\net5.0\Entities.pdb

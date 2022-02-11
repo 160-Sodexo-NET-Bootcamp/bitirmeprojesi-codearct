@@ -1977,13 +1977,25 @@
       },
       "DataAccess/1.0.0": {
         "dependencies": {
-          "Core": "1.0.0"
+          "Core": "1.0.0",
+          "Entities": "1.0.0"
         },
         "runtime": {
           "DataAccess.dll": {}
         },
         "compile": {
           "DataAccess.dll": {}
+        }
+      },
+      "Entities/1.0.0": {
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "runtime": {
+          "Entities.dll": {}
+        },
+        "compile": {
+          "Entities.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -4715,6 +4727,11 @@
       "sha512": ""
     },
     "DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Entities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

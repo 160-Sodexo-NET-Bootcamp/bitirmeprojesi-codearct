@@ -12,18 +12,28 @@ namespace DataAccess.Concrete.EntityFramework
         private readonly ByCellDbContext _context;
 
         public IUserDal Users { get; private set; }
+        public ICategoryDal Categories { get; private set; }
+        public IColorDal Colors { get; private set; }
+        public IOfferConfirmDal OfferConfirms { get; private set; }
+        public IProductBrandDal ProductBrands { get; private set; }
+        public IUsageStatusDal UsageStatuses { get; private set; }
 
-        public EfUnitOfWork(ByCellDbContext context, IUserDal users)
+        public EfUnitOfWork(ByCellDbContext context)
         {
             _context = context;
-            Users = users;
+            Users = new EfUserDal(context);
+            Categories = new EfCategoryDal(context);
+            Colors = new EfColorDal(context);
+            OfferConfirms = new EfOfferConfirmDal(context);
+            ProductBrands = new EfProductBrandDal(context);
+            UsageStatuses = new EfUsageStatusDal(context);
         }
-        public async Task<bool> CommitAsync()
+        public async Task CommitAsync()
         {
             try
             {
                 await _context.SaveChangesAsync();
-                return true;
+
             }
             catch (Exception)
             {
@@ -39,6 +49,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
             catch (Exception)
             {
+
                 throw new Exception("An error occured during saving!!!");
             }
 

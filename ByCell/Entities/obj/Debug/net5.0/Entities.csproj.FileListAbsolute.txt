@@ -22,3 +22,6 @@ D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\MehmetAkif
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\MehmetAkifYildiz_BitirmeProjesi_ByCell\Entities\obj\Debug\net5.0\Entities.dll
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\MehmetAkifYildiz_BitirmeProjesi_ByCell\Entities\obj\Debug\net5.0\ref\Entities.dll
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\MehmetAkifYildiz_BitirmeProjesi_ByCell\Entities\obj\Debug\net5.0\Entities.pdb
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Entities\bin\Debug\net5.0\Core.dll
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Entities\bin\Debug\net5.0\Core.pdb
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Entities\obj\Debug\net5.0\Entities.csproj.CopyComplete
