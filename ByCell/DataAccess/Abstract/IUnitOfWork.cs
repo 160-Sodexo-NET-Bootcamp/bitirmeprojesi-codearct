@@ -11,9 +11,9 @@ namespace DataAccess.Abstract
         IUserDal Users { get; }
         ICategoryDal Categories { get; }
         IColorDal Colors { get; }
-        IOfferConfirmDal OfferConfirms { get; }
         IProductBrandDal ProductBrands { get; }
         IUsageStatusDal UsageStatuses { get; }
+        IProductDal Products {get;}
         Task CommitAsync();
         void Commit();
     }

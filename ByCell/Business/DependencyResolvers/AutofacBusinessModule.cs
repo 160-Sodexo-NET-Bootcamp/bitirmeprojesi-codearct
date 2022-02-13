@@ -26,7 +26,6 @@ namespace Business.DependencyResolvers
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
             builder.RegisterType<ColorService>().As<IColorService>().InstancePerLifetimeScope();
-            builder.RegisterType<OfferConfirmService>().As<IOfferConfirmService>().InstancePerLifetimeScope();
             builder.RegisterType<AuthService>().As<IAuthService>().InstancePerLifetimeScope();
             builder.RegisterType<MailService>().As<IMailService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductBrandService>().As<IProductBrandService>().InstancePerLifetimeScope();

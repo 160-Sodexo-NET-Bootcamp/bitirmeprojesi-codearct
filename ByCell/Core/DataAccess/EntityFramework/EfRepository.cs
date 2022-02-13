@@ -12,7 +12,7 @@ namespace Core.DataAccess.EntityFramework
     public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
     {
         protected DbContext _context;
-        internal DbSet<TEntity> _dbSet;
+        protected DbSet<TEntity> _dbSet;
         public EfRepository(DbContext context)
         {
             _context = context;

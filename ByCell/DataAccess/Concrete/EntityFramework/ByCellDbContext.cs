@@ -19,7 +19,12 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Color> Colors { get; set; }
         public DbSet<ProductBrand> ProductBrands { get; set; }
         public DbSet<UsageStatus> UsageStatuses { get; set; }
-        public DbSet<OfferConfirm> OfferConfirms { get; set; }
-
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Offer> Offers { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Offer>().Property(c => c.OfferedPricePercentage).HasColumnType("decimal(5, 2)");
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

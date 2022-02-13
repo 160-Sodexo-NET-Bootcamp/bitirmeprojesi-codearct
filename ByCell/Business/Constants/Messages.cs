@@ -32,14 +32,6 @@ namespace Business.Constants
         public static string ColorRemoved => "Renk silindi!";
         public static string ColorUpdated => "Renk güncellendi";
 
-        //OfferConfirm mesajları
-        public static string ExistingOfferConfirm => "Teklif onayı mevcut";
-        public static string OfferConfirmAdded => "Teklif onayı eklendi";
-        public static string OfferConfirmNotFound => "Teklif onayı bulunamadı!";
-        public static string OfferConfirmAlreadyNotExist => "Teklif onayı zaten mevcut değil!";
-        public static string OfferConfirmRemoved => "Teklif onayı silindi!";
-        public static string OfferConfirmUpdated => "Teklif onayı güncellendi";
-
         //ProductBrand mesajları
         public static string ExistingProductBrand => "Ürün markası mevcut";
         public static string ProductBrandAdded => "Ürün markası eklendi";
@@ -48,12 +40,21 @@ namespace Business.Constants
         public static string ProductBrandRemoved => "Ürün markası silindi!";
         public static string ProductBrandUpdated => "Ürün markası güncellendi";
 
-        //ProductBrand mesajları
+        //UsageStatus mesajları
         public static string ExistingUsageStatus => "Kullanım durumu mevcut";
         public static string UsageStatusAdded => "Kullanım durumu eklendi";
         public static string UsageStatusNotFound => "Kullanım durumu bulunamadı!";
         public static string UsageStatusAlreadyNotExist => "Kullanım durumu zaten mevcut değil!";
         public static string UsageStatusRemoved => "Kullanım durumu silindi!";
         public static string UsageStatusUpdated => "Kullanım durumu güncellendi";
+
+        //Product mesajları
+        public static string ExistingProduct => "Ürün mevcut";
+        public static string ProductAdded => "Kullanım durumu eklendi";
+        public static string ProductNotFound => "Ürün bulunamadı!";
+        public static string ProductAlreadyNotExist => "Ürün zaten mevcut değil!";
+        public static string ProductRemoved => "Ürün silindi!";
+        public static string ProductUpdated => "Ürün güncellendi";
+        public static string AuthorizationDenied => "Yetkiniz yok!Ürün kullanıcıya ait değil";
     }
 }
