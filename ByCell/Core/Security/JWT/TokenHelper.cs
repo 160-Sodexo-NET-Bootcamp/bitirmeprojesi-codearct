@@ -1,10 +1,12 @@
 ﻿using Core.Entities.Concrete;
+using Core.Extensions.Claims;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +49,7 @@ namespace Core.Security.JWT
                 issuer: tokenConfig.Issuer,
                 audience: tokenConfig.Audience,
                 expires: _accessTokenExpiration,
+                claims: SetClaims(user),
                 notBefore: DateTime.Now,
                 signingCredentials: signingCredentials
             );
@@ -55,6 +58,16 @@ namespace Core.Security.JWT
         public string CreateRefreshToken()
         {
             return Guid.NewGuid().ToString();
+        }
+
+        private IEnumerable<Claim> SetClaims(User user)
+        {
+            var claims = new List<Claim>();
+            claims.AddNameIdentifier(user.Id.ToString());
+            claims.AddEmail(user.Email);
+            claims.AddName($"{user.FirstName} {user.LastName}");
+
+            return claims;
         }
     }
 }

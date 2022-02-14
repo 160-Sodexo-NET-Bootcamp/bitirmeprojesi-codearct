@@ -410,6 +410,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
             "Autofac.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[7.2.0, )"
@@ -417,6 +421,10 @@
             "Hangfire": {
               "target": "Package",
               "version": "[1.7.28, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",

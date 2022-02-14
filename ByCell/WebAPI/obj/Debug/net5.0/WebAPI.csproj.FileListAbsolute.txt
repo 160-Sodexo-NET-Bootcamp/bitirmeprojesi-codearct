@@ -128,3 +128,7 @@ D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Web
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\WebAPI\bin\Debug\net5.0\Entities.dll
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\WebAPI\bin\Debug\net5.0\Entities.pdb
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\WebAPI\bin\Debug\net5.0\AutoMapper.dll
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\WebAPI\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\WebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

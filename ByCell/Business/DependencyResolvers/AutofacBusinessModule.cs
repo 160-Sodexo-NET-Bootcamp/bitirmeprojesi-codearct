@@ -30,6 +30,7 @@ namespace Business.DependencyResolvers
             builder.RegisterType<MailService>().As<IMailService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductBrandService>().As<IProductBrandService>().InstancePerLifetimeScope();
             builder.RegisterType<UsageStatusService>().As<IUsageStatusService>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
 
             //Interceptor for AOP
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

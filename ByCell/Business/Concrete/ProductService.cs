@@ -65,7 +65,7 @@ namespace Business.Concrete
             product = _uow.Products.Get(p => p.UserId == userId);
             if (product is null)
             {
-                new ErrorResult(Messages.AuthorizationDenied);
+                return new ErrorResult(Messages.AuthorizationDenied);
             }
 
             product.IsActive = false;
@@ -88,16 +88,18 @@ namespace Business.Concrete
             product = _uow.Products.Get(p => p.UserId == userId);
             if (product is null)
             {
-                new ErrorResult(Messages.AuthorizationDenied);
+                return new ErrorResult(Messages.AuthorizationDenied);
             }
 
             product.Name = string.IsNullOrEmpty(updateProductDto.Name) ? product.Name : updateProductDto.Name;
             product.Description = string.IsNullOrEmpty(updateProductDto.Description) ? product.Description : updateProductDto.Description;
             product.CategoryId = updateProductDto.CategoryId == default ? product.CategoryId : updateProductDto.CategoryId;
             product.ColorId = updateProductDto.ColorId == default ? product.ColorId : updateProductDto.ColorId;
-            product.BrandId = updateProductDto.BrandId == default ? product.BrandId : updateProductDto.BrandId;
+            product.ProductBrandId = updateProductDto.BrandId == default ? product.ProductBrandId : updateProductDto.BrandId;
             product.UsageStatusId = updateProductDto.UsageStatusId == default ? product.UsageStatusId : updateProductDto.UsageStatusId;
-            product.ImagePath = imagePath is null ? product.ImagePath : imagePath;
+            product.ImagePath = imagePath is null
+                ? (updateProductDto.ImagePath==string.Empty?string.Empty:product.ImagePath) 
+                : imagePath;
             product.IsOfferable = updateProductDto.IsOfferable == default ? product.IsOfferable : updateProductDto.IsOfferable;
 
             _uow.Products.Update(product);

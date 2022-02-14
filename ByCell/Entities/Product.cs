@@ -1,5 +1,4 @@
-﻿using Core.Entities.Abstarct;
-using Core.Entities.Concrete;
+﻿using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace Entities
         public Category Category { get; set; }
         public int ColorId { get; set; }
         public Color Color { get; set; }
-        public int BrandId { get; set; }
+        public int ProductBrandId { get; set; }
         public ProductBrand ProductBrand { get; set; }
         public int UsageStatusId { get; set; }
         public UsageStatus UsageStatus { get; set; }
