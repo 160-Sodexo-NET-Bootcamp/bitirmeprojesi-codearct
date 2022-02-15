@@ -20,7 +20,7 @@ namespace Business.DependencyResolvers
         protected override void Load(ContainerBuilder builder)
         {
             //Dependencies
-            builder.RegisterType<EfUnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+            //builder.RegisterType<EfUnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
             builder.RegisterType<TokenHelper>().As<ITokenHelper>().InstancePerLifetimeScope();
 
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();

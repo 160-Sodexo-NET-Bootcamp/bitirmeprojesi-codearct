@@ -15,7 +15,7 @@ namespace Business.Abstract
         IDataResult<GetOfferDto> GetById(int id);
         IResult SendOffer(int productId,SendOfferDto createOfferDto);
         IResult ChangeOffer(int offerId,SendOfferDto updateOfferDto);
-        IResult ConfirmOffer(bool confirmStatus);
+        IResult ConfirmOffer(int offerId,bool confirmStatus);
         IResult GetBackOffer(int offerId);
     }
 }

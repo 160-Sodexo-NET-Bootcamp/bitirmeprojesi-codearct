@@ -14,6 +14,7 @@ namespace DataAccess.Abstract
         IProductBrandDal ProductBrands { get; }
         IUsageStatusDal UsageStatuses { get; }
         IProductDal Products {get;}
+        IOfferDal Offers { get; }
         Task CommitAsync();
         void Commit();
     }

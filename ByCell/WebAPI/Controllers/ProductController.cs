@@ -34,8 +34,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [Authorize]
-        [HttpGet("own")]
+        [HttpGet("user/current")]
         public IActionResult GetAllProductsByUserId()
         {
             var result = _productService.GetAllByUserId();
@@ -88,7 +87,6 @@ namespace WebAPI.Controllers
             }
         }
 
-        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Edit(int id,[FromBody] UpdateProductDto updateProductDto, [FromHeader] IFormFile ImageFile = null)
         {
@@ -125,11 +123,21 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             var result = _productService.Delete(id);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpPut("{id}/buy")]
+        public IActionResult BuyProduct(int id)
+        {
+            var result = _productService.BuyProduct(id);
             if (!result.Success)
             {
                 return BadRequest(result);

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SSObdvcCXsCysQGVTTAhOQ5V0mLwd/pwFjU2jBX6kgOKQHAQQkf97AYWr7d6+V0pYvPZcqAqHBLzl5sojIglVQ==",
+  "dgSpecHash": "jmaUI3fpPn3ei/Ty52ohQzfHMvBseLtAnJDyJpIuY9ZxkBY4o30ZqTA0zELZxJi53VQk8w3IhyTtMUuqRsNt5Q==",
   "success": true,
   "projectFilePath": "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Business\\Business.csproj",
   "expectedPackageFiles": [
@@ -23,8 +23,8 @@
     "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.configuration.binder\\6.0.0\\microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
-    "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.1\\microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512",
-    "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0\\microsoft.extensions.logging.5.0.0.nupkg.sha512",
     "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\Akif\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",

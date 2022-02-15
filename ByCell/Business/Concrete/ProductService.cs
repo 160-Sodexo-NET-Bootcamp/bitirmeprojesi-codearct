@@ -2,8 +2,10 @@
 using Business.Abstract;
 using Business.Constants;
 using Business.DTOs.ProductDTOs;
+using Business.Security;
 using Business.ValidationRules.FluentValidation.ProductValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Entities.Concrete;
 using Core.Results;
 using DataAccess.Abstract;
 using Entities;
@@ -62,10 +64,9 @@ namespace Business.Concrete
             }
 
             var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            product = _uow.Products.Get(p => p.UserId == userId);
-            if (product is null)
+            if (product.UserId!=userId)
             {
-                return new ErrorResult(Messages.AuthorizationDenied);
+                return new ErrorResult(Messages.ProductAuthDenied);
             }
 
             product.IsActive = false;
@@ -76,6 +77,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductRemoved);
         }
 
+        [ValidationAspect(typeof(UpdateProductValidator))]
         public IResult Edit(int id, UpdateProductDto updateProductDto, string imagePath = null)
         {
             var product = _uow.Products.Get(c => c.Id == id && c.IsActive == true);
@@ -85,10 +87,9 @@ namespace Business.Concrete
             }
 
             var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            product = _uow.Products.Get(p => p.UserId == userId);
-            if (product is null)
+            if (product.UserId!=userId)
             {
-                return new ErrorResult(Messages.AuthorizationDenied);
+                return new ErrorResult(Messages.ProductAuthDenied);
             }
 
             product.Name = string.IsNullOrEmpty(updateProductDto.Name) ? product.Name : updateProductDto.Name;
@@ -134,7 +135,7 @@ namespace Business.Concrete
             var user = _uow.Users.Get(u => u.Id == userId);
             if (user is null)
             {
-                return new ErrorDataResult<List<GetProductDto>>(Messages.AuthorizationDenied);
+                return new ErrorDataResult<List<GetProductDto>>(Messages.UserNotFound);
             }
             var products = _uow.Products.GetAllProducts(p => p.UserId == userId && p.IsActive==true);
             var productDtos = _mapper.Map<List<GetProductDto>>(products);
@@ -150,6 +151,19 @@ namespace Business.Concrete
             }
             var productDto = _mapper.Map<GetProductDto>(product);
             return new SuccessDataResult<GetProductDto>(productDto);
+        }
+
+        public IResult BuyProduct(int id)
+        {
+            var product = _uow.Products.Get(p => p.Id == id && p.IsActive == true);
+            if (product is null)
+            {
+                return new ErrorDataResult<GetProductDto>(Messages.ProductNotFound);
+            }
+            product.IsOfferable = false;
+            product.IsSold = true;
+            _uow.Products.Update(product);
+            return new SuccessResult(Messages.ProductSold);
         }
     }
 }

@@ -17,5 +17,6 @@ namespace Business.Abstract
         IResult Create(string imagePath,CreateProductDto createProductDto);
         IResult Edit(int id,UpdateProductDto updateProductDto, string imagePath = null);
         IResult Delete(int id);
+        IResult BuyProduct(int id);
     }
 }

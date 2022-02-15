@@ -1,5 +1,6 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.IoC;
 using Core.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -97,9 +98,11 @@ namespace WebAPI
 
             //HttpContextAccessor
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
             //AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            ServiceTool.Create(services);
 
         }
 
