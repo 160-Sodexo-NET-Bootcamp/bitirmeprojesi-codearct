@@ -20,11 +20,13 @@ namespace DataAccess.Concrete.EntityFramework
         public List<Offer> GetAllOffers(Expression<Func<Offer, bool>> filter = null)
         {
             return filter == null
-                    ? _dbSet.Include(o => o.Product)
+                    ? _context.Set<Offer>()
+                                 .Include(o => o.Product)
                                  .Include(o => o.User)
                                  .OrderBy(o => o.Id)
                                  .ToList()
-                    : _dbSet.Include(o => o.Product)
+                    : _context.Set<Offer>()
+                                 .Include(o => o.Product)
                                  .Include(o => o.User)
                                  .Where(filter)
                                  .OrderBy(o => o.Id)
@@ -33,9 +35,9 @@ namespace DataAccess.Concrete.EntityFramework
 
         public Offer GetOffer(Expression<Func<Offer, bool>> filter)
         {
-            return _dbSet.Include(o => o.Product)
+            return _context.Set<Offer>().Include(o => o.Product)
                                  .Include(o => o.User)
-                                 .Where(filter) as Offer;
+                                 .SingleOrDefault(filter);
         }
     }
 }

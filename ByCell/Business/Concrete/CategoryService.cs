@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Security;
 using Core.Results;
 using DataAccess.Abstract;
 using Entities;
@@ -10,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Business.Concrete
-{
+{    
     public class CategoryService : ICategoryService
     {
         private readonly IUnitOfWork _uow;
@@ -20,6 +21,7 @@ namespace Business.Concrete
             _uow = uow;
         }
 
+        [SecuredOperation()]
         public IResult Create(string name)
         {
             var category = _uow.Categories.Get(c => c.Name == name && c.IsActive==true);
@@ -39,6 +41,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CategoryAdded);
         }
 
+        [SecuredOperation()]
         public IResult Delete(int id)
         {
             var category = _uow.Categories.Get(c => c.Id == id && c.IsActive==true);
@@ -55,6 +58,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CategoryRemoved);
         }
 
+        [SecuredOperation()]
         public IResult Edit(int id,string name)
         {
             var category = _uow.Categories.Get(c => c.Name == name && c.IsActive == true);

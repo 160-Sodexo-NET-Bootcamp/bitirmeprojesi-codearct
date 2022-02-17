@@ -1,5 +1,9 @@
 ﻿using Business.Abstract;
 using Business.DTOs.Mail;
+using Business.Enums;
+using Core.Caching;
+using Core.Entities.Concrete;
+using DataAccess.Abstract;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -14,33 +18,48 @@ namespace Business.Concrete
     public class MailService : IMailService
     {
         public IConfiguration Configuration { get; }
+        private readonly ICacheService _cacheService;
         private readonly SmtpConfigDto _smtpConfigDto;
-        private readonly IUserService _userService;
+        private readonly IUnitOfWork _uow;
 
-        public MailService(IConfiguration configuration, IUserService userService)
+        public MailService(IConfiguration configuration, IUnitOfWork uow, ICacheService cacheService)
         {
             Configuration = configuration;
             _smtpConfigDto = Configuration.GetSection("SmtpConfig").Get<SmtpConfigDto>();
-            _userService = userService;
+            _uow = uow;
+            _cacheService = cacheService;
         }
 
         public async Task SendRegisteredUserMailAsync(string emailAdress)
         {
-            using var client = CreateSmtpClient();
-            var userInfo = _userService.GetByMail(emailAdress);
+            var user = _uow.Users.Get(u => u.Email == emailAdress);
 
             MailMessageDto mailMessageDto = new MailMessageDto
             {
-                Body = $"Sayın {userInfo.FirstName} {userInfo.LastName}," +
+                Body = $"Sayın {user.FirstName} {user.LastName}," +
                        $"\nByCell'e Hoşgeldiniz" +
                        $"\nSaygılarımızla",
-                To = userInfo.Email,
+                To = user.Email,
                 Subject = "Hoşgeldiniz",
                 From = _smtpConfigDto.User
             };
-            MailMessage mailMessage = GetMailMessage(mailMessageDto);
-            mailMessage.IsBodyHtml = true;
-            await client.SendMailAsync(mailMessage);
+            await CreateMailAsync(mailMessageDto);
+        }
+
+        public async Task SendBlockedUserMailAsync(string emailAdress)
+        {
+            var user = _uow.Users.Get(u => u.Email == emailAdress);
+
+            MailMessageDto mailMessageDto = new MailMessageDto
+            {
+                Body = $"Sayın {user.FirstName} {user.LastName}," +
+                       $"\nHesabınız engellenmiştir.Lütfen yeni kayıt oluşturunuz." +
+                       $"\nSaygılarımızla",
+                To = user.Email,
+                Subject = "Hesap Engellendi!",
+                From = _smtpConfigDto.User
+            };
+            await CreateMailAsync(mailMessageDto);
         }
 
         private SmtpClient CreateSmtpClient()
@@ -51,15 +70,53 @@ namespace Business.Concrete
             return smtp;
         }
 
-        public async Task SendMailAsync(MailMessageDto mailMessageDto)
+        public async Task SendMailAsync()
         {
-            MailMessage mailMessage = GetMailMessage(mailMessageDto);
-            mailMessage.From = new MailAddress(_smtpConfigDto.User);
+            var sentMails = _uow.SentMails.GetAll(m => m.Status == MailStatus.Beklemede.ToString())
+                                          .OrderBy(m=>m.Id)
+                                          .Take(10)
+                                          .ToList();
+            int tryCount = 0;
+            foreach (var sentMail in sentMails)
+            {
+                string cacheKey =$"{sentMail.To}_{sentMail.Id}";
+                var result = _cacheService.IsAdd(cacheKey);
+                if (!result)
+                    _cacheService.Add(cacheKey, tryCount);
 
-            using var client = CreateSmtpClient();
-            await client.SendMailAsync(mailMessage);
-        }
+                try
+                {
+                    MailMessage mailMessage = new MailMessage
+                    {
+                        Subject = sentMail.Subject,
+                        Body = sentMail.Body,
+                        From = new MailAddress(sentMail.From)
+                    };
+                    mailMessage.To.Add(sentMail.To);
+                    mailMessage.From = new MailAddress(_smtpConfigDto.User);
 
+                    using var client = CreateSmtpClient();
+                
+                    await client.SendMailAsync(mailMessage);
+                    ChangeMailStatus(sentMail.Id, true);
+                    _cacheService.Remove(cacheKey);
+                }
+                catch (Exception)
+                {
+                    tryCount =_cacheService.Get<int>(cacheKey);
+                    if (tryCount==5)
+                    {
+                        ChangeMailStatus(sentMail.Id, false);
+                        _cacheService.Remove(cacheKey);
+                        throw;
+                    }
+                    tryCount++;
+                    _cacheService.Remove(cacheKey);
+                    _cacheService.Add(cacheKey, tryCount);
+                }                                
+            }
+        }                           
+        
         public MailMessage GetMailMessage(MailMessageDto mailMessageDto)
         {
             var mailMessage = new MailMessage
@@ -70,6 +127,31 @@ namespace Business.Concrete
             };
             mailMessage.To.Add(mailMessageDto.To);
             return mailMessage;
+        }
+
+        public async Task CreateMailAsync(MailMessageDto mailMessageDto)
+        {
+            var sentMail = new SentMail
+            {
+                Subject = mailMessageDto.Subject,
+                Body = mailMessageDto.Body,
+                From = mailMessageDto.From,
+                To = mailMessageDto.To,
+                Status = MailStatus.Beklemede.ToString()
+            };
+            
+            _uow.SentMails.Add(sentMail);
+            await _uow.CommitAsync();
+        }
+
+        public void ChangeMailStatus(int id, bool status)
+        {
+            var sentMail = _uow.SentMails.Get(m => m.Id == id);
+            sentMail.Status = status == false
+                            ? MailStatus.Başarısız.ToString()
+                            : MailStatus.Gönderildi.ToString();
+            _uow.SentMails.Update(sentMail);
+            _uow.Commit();
         }
     }
 }

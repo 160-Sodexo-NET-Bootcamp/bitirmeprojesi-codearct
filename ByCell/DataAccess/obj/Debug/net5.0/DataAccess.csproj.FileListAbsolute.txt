@@ -27,3 +27,6 @@ D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Dat
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CopyComplete
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\DataAccess\bin\Debug\net5.0\Entities.dll
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\DataAccess\bin\Debug\net5.0\Entities.pdb
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\DataAccess\bin\Debug\net5.0\DataAccess.runtimeconfig.json
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\DataAccess\bin\Debug\net5.0\DataAccess.runtimeconfig.dev.json
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\DataAccess\obj\Debug\net5.0\DataAccess.genruntimeconfig.cache

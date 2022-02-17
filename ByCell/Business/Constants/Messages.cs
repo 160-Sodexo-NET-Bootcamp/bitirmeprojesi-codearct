@@ -13,8 +13,10 @@ namespace Business.Constants
         public static string UserNotFound => "Kullanıcı bulunamadı";
         public static string PasswordError => "Giriş bilgilerini kontrol edin!";
         public static string SuccessfulLogin => "Hoşgeldiniz";
-        public static string UserAlreadyExists => "Kullanıcı mevcut!";
+        public static string UserAlreadyExists => "Başka bir mail adresi kulanınız!";
         public static string UnValidRefreshToken => "Tekrar giriş yapınız";
+        public static string AuthorizationsDenied => "Yetkiniz yok! Giriş yapınız!";
+        public static string UserBlocked => "Engellendi!Yeni kayıt oluşturunuz!";
 
         //Category mesajları
         public static string ExistingCategory => "Kategori mevcut";
@@ -39,6 +41,7 @@ namespace Business.Constants
         public static string ProductBrandAlreadyNotExist => "Ürün markası zaten mevcut değil!";
         public static string ProductBrandRemoved => "Ürün markası silindi!";
         public static string ProductBrandUpdated => "Ürün markası güncellendi";
+        public static string ProductImageUploaded => "Ürün resmi yüklendi.";
 
         //UsageStatus mesajları
         public static string ExistingUsageStatus => "Kullanım durumu mevcut";
@@ -64,9 +67,10 @@ namespace Business.Constants
         public static string OfferNotFound => "Teklif bulunamadı!";
         public static string OfferAlreadyNotExist => "Teklif zaten mevcut değil!";
         public static string OfferRemoved => "Teklif geri çekildi!";
-        public static string OfferConfirmed => "Teklif onaylandı";
+        public static string OfferConfirmed => "Teklif değerlendirildi";
         public static string OfferAuthDenied => "Yetkiniz yok!Teklif kullanıcıya ait değil";
         public static string OfferProductNotFound => "Teklif için ürün bulunamadı";
         public static string OfferUpdated => "Teklif güncellendi";
+        public static string NotOfferOwnProduct => "Kendi ürününüze teklif veremezsiniz!";
     }
 }

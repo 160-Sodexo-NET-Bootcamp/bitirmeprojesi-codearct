@@ -12,7 +12,6 @@ namespace WebAPI.Controllers
 {
     [Route("offers")]
     [ApiController]
-    [Authorize]
     public class OfferController : ControllerBase
     {
         private readonly IOfferService _offerService;

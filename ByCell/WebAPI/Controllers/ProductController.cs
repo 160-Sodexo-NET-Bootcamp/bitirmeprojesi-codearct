@@ -56,8 +56,30 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet("category/{categoryId}")]
+        public IActionResult GetAllByCategoryId(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
         [HttpPost]
-        public IActionResult Create([FromHeader]IFormFile ImageFile, [FromBody] CreateProductDto createProductDto)
+        public IActionResult Create([FromBody] CreateProductDto createProductDto)
+        {
+            var result = _productService.Create(createProductDto);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpPut("{productId}/image")]
+        public IActionResult UploadProductImage(int productId,IFormFile ImageFile)
         {
             if (ImageFile.Length>0 &&(ImageFile.ContentType=="image/png" 
                                    || ImageFile.ContentType == "image/jpg" 
@@ -73,8 +95,7 @@ namespace WebAPI.Controllers
                     ImageFile.CopyTo(stream);
                     stream.Flush();
                 }
-
-                var result = _productService.Create(path + ImageFile.FileName, createProductDto);
+                var result = _productService.UploadProductImage(productId, path + ImageFile.FileName);
                 if (!result.Success)
                 {
                     return BadRequest(result);
@@ -88,45 +109,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Edit(int id,[FromBody] UpdateProductDto updateProductDto, [FromHeader] IFormFile ImageFile = null)
+        public IActionResult Edit(int id,[FromBody] UpdateProductDto updateProductDto)
         {
-            IResult result;
-            if (ImageFile==null)
-            {
-                result = _productService.Edit(id, updateProductDto);
-            }
-            else
-            {
-                if (ImageFile.ContentType == "image/png"
-                    || ImageFile.ContentType == "image/jpg"
-                    || ImageFile.ContentType == "image/jpeg")
-                {
-                    string path = _webHostEnvironment.WebRootPath + "\\Images\\";
-                    using (FileStream stream = System.IO.File.Create(path + ImageFile.FileName))
-                    {
-                        ImageFile.CopyTo(stream);
-                        stream.Flush();
-                    }
-                    result = _productService.Edit(id, updateProductDto, path + ImageFile.FileName);
-                }
-                else
-                {
-                    return BadRequest("Resim uzantısını kontrol edin!");
-                }
-                
-            }
-                
-            if (!result.Success)
-            {
-                return NotFound(result);
-            }
-            return Ok(result);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var result = _productService.Delete(id);
+            var result = _productService.Edit(id, updateProductDto);
             if (!result.Success)
             {
                 return BadRequest(result);
@@ -144,5 +129,17 @@ namespace WebAPI.Controllers
             }
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var result = _productService.Delete(id);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
     }
 }

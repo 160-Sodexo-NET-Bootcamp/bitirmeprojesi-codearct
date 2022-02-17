@@ -15,6 +15,7 @@ namespace DataAccess.Abstract
         IUsageStatusDal UsageStatuses { get; }
         IProductDal Products {get;}
         IOfferDal Offers { get; }
+        ISentMailDal SentMails { get; }
         Task CommitAsync();
         void Commit();
     }

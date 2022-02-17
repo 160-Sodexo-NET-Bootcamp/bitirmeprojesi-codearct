@@ -12,8 +12,8 @@ namespace Business.ValidationRules.FluentValidation.ProductValidation
     {
         public UpdateProductValidator()
         {
-            RuleFor(product => product.Name).MaximumLength(100);
-            RuleFor(product => product.Description).MaximumLength(500);
+            RuleFor(product => product.Name).MaximumLength(100).When(p=>!string.IsNullOrEmpty(p.Name));
+            RuleFor(product => product.Description).MaximumLength(500).When(p => !string.IsNullOrEmpty(p.Description));
         }
     }
 }

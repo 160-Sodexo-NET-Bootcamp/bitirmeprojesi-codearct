@@ -18,17 +18,27 @@ namespace DataAccess.Concrete.EntityFramework
         public IUsageStatusDal UsageStatuses { get; private set; }
         public IProductDal Products { get; private set; }
         public IOfferDal Offers { get; private set; }
+        public ISentMailDal SentMails { get; private set; }
 
-        public EfUnitOfWork(ByCellDbContext context)
+        public EfUnitOfWork(ByCellDbContext context,
+                            IUserDal users,
+                            ICategoryDal categories,
+                            IColorDal colors,
+                            IProductBrandDal productBrands,
+                            IUsageStatusDal usageStatuses,
+                            IProductDal products,
+                            IOfferDal offers, 
+                            ISentMailDal sentMails)
         {
             _context = context;
-            Users = new EfUserDal(context);
-            Categories = new EfCategoryDal(context);
-            Colors = new EfColorDal(context);
-            ProductBrands = new EfProductBrandDal(context);
-            UsageStatuses = new EfUsageStatusDal(context);
-            Products = new EfProductDal(context);
-            Offers = new EfOfferDal(context);
+            Users = users;
+            Categories = categories;
+            Colors = colors;
+            ProductBrands = productBrands;
+            UsageStatuses = usageStatuses;
+            Products = products;
+            Offers = offers;
+            SentMails = sentMails;
         }
         public async Task CommitAsync()
         {

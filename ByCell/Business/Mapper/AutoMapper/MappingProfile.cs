@@ -15,7 +15,6 @@ namespace Business.Mapper.AutoMapper
     {
         public MappingProfile()
         {
-            CreateMap<CreateProductDto, Product>();
             CreateMap<Product, GetProductDto>()
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName))
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name))

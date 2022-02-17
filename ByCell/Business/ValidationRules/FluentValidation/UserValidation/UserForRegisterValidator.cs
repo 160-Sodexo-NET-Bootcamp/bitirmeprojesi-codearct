@@ -12,13 +12,13 @@ namespace Business.ValidationRules.FluentValidation.UserValidation
     {
         public UserForRegisterValidator()
         {
-            RuleFor(user => user.FirstName).NotEmpty();
-            RuleFor(user => user.LastName).NotEmpty();
+            RuleFor(user => user.FirstName).NotEmpty().WithMessage("İsim alanı boş bırakılamaz!"); ;
+            RuleFor(user => user.LastName).NotEmpty().WithMessage("Soyisim alanı boş bırakılamaz!"); ;
             RuleFor(user => user.Email).NotEmpty().WithMessage("Email boş bırakılamaz!");
             RuleFor(user => user.Email).EmailAddress().WithMessage("Geçerli bir mail adresi giriniz!");
-            RuleFor(user => user.Password).NotEmpty();
-            RuleFor(user => user.Password).MinimumLength(8);
-            RuleFor(user => user.Password).MaximumLength(20);
+            RuleFor(user => user.Password).NotEmpty().WithMessage("Bir şifre giriniz!"); ;
+            RuleFor(user => user.Password).MinimumLength(8).WithMessage("Şifre en az 8 karakterden oluşmalı!"); ;
+            RuleFor(user => user.Password).MaximumLength(20).WithMessage("Şifre en fazla 20 karakterden oluşmalı!"); ;
         }
     }
 }

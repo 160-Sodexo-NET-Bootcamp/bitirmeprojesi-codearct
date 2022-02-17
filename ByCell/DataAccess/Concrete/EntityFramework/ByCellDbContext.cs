@@ -21,9 +21,12 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<UsageStatus> UsageStatuses { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Offer> Offers { get; set; }
+        public DbSet<SentMail> SentMails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Offer>().Property(c => c.OfferedPricePercentage).HasColumnType("decimal(5, 2)");
+            modelBuilder.Entity<Offer>().Property(c => c.OfferedPrice).HasColumnType("decimal(10, 2)");
+            modelBuilder.Entity<Product>().Property(c => c.Price).HasColumnType("decimal(10, 2)");
             base.OnModelCreating(modelBuilder);
         }
     }

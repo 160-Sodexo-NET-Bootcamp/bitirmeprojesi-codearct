@@ -12,6 +12,7 @@ namespace Business.Abstract
     {
         bool CreateUser(User user);
         void EditByAccessToken(User user);
+        void BlockUser(string emailAdress);
         User GetByMail(string email);
         User GetByRefreshToken(string existingRefreshToken);
     }

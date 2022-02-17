@@ -23,7 +23,7 @@ namespace Business.Concrete
         public bool CreateUser(User user)
         {
             var newUser = GetByMail(user.Email);
-            if (newUser is not null)
+            if (newUser != null && newUser.Blocked==true)
             {
                 return false;
             }
@@ -34,7 +34,7 @@ namespace Business.Concrete
 
         public User GetByMail(string email)
         {
-            return  _uow.Users.Get(u => u.Email == email);
+            return _uow.Users.Get(u => u.Email == email);
         }
 
         public User GetByRefreshToken(string existingRefreshToken)
@@ -45,6 +45,14 @@ namespace Business.Concrete
 
         public void EditByAccessToken(User user)
         {
+            _uow.Users.Update(user);
+            _uow.Commit();
+        }
+
+        public void BlockUser(string emailAdress)
+        {
+            var user = _uow.Users.Get(u => u.Email == emailAdress);
+            user.Blocked = true;
             _uow.Users.Update(user);
             _uow.Commit();
         }

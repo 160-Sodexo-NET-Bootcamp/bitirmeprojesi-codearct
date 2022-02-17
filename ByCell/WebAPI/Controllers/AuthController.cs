@@ -1,5 +1,4 @@
-﻿using BackgroundJobs.Jobs;
-using Business.Abstract;
+﻿using Business.Abstract;
 using Business.DTOs.UserDTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +14,12 @@ namespace WebAPI.Controllers
     public class AuthController : Controller
     {
         private IAuthService _authService;
+        private IMailService _mailService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IMailService mailService)
         {
             _authService = authService;
+            _mailService = mailService;
         }
 
         [HttpPost("login")]
@@ -41,7 +42,7 @@ namespace WebAPI.Controllers
             {
                 return BadRequest(result);
             }
-            FireAndForgetJobs.SendMailRegisterJobs(userForRegisterDto.Email);
+            _mailService.SendRegisteredUserMailAsync(userForRegisterDto.Email);
             return Ok(result);
         }
 

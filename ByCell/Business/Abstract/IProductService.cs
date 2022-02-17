@@ -14,8 +14,9 @@ namespace Business.Abstract
         IDataResult<List<GetProductDto>> GetAllByUserId();//UserId HttpContext den gelecek
         IDataResult<List<GetProductDto>> GetAllByCategoryId(int categoryId);
         IDataResult<GetProductDto> GetById(int id);
-        IResult Create(string imagePath,CreateProductDto createProductDto);
-        IResult Edit(int id,UpdateProductDto updateProductDto, string imagePath = null);
+        IResult Create(CreateProductDto createProductDto);
+        IResult UploadProductImage(int id, string imagePath);
+        IResult Edit(int id,UpdateProductDto updateProductDto);
         IResult Delete(int id);
         IResult BuyProduct(int id);
     }

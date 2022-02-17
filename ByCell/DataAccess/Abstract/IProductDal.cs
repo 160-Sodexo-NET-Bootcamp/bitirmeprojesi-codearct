@@ -11,7 +11,7 @@ namespace DataAccess.Abstract
 {
     public interface IProductDal:IRepository<Product>
     {
-        List<Product> GetAllProducts(Expression<Func<Product, bool>> filter=null);
+        List<Product> GetAllProducts(Expression<Func<Product, bool>> filter = null);
         Product GetProduct(Expression<Func<Product, bool>> filter);
     }
 }

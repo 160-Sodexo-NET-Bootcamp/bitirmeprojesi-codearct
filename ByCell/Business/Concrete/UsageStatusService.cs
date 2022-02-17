@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Security;
 using Core.Results;
 using DataAccess.Abstract;
 using Entities;
@@ -20,6 +21,7 @@ namespace Business.Concrete
             _uow = uow;
         }
 
+        [SecuredOperation()]
         public IResult Create(string name)
         {
             var usageStatus = _uow.UsageStatuses.Get(c => c.Name == name && c.IsActive == true);
@@ -39,6 +41,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UsageStatusAdded);
         }
 
+        [SecuredOperation()]
         public IResult Delete(int id)
         {
             var usageStatus = _uow.UsageStatuses.Get(c => c.Id == id && c.IsActive == true);
@@ -55,6 +58,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UsageStatusRemoved);
         }
 
+        [SecuredOperation()]
         public IResult Edit(int id, string name)
         {
             var usageStatus = _uow.UsageStatuses.Get(c => c.Name == name && c.IsActive == true);

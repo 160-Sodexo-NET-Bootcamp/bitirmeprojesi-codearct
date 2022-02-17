@@ -32,8 +32,9 @@ namespace Business.Concrete
             _mapper = mapper;
         }
 
+        [SecuredOperation(Priority =1)]
         [ValidationAspect(typeof(CreateProductValidator))]
-        public IResult Create(string imagePath,CreateProductDto createProductDto)
+        public IResult Create(CreateProductDto createProductDto)
         {
             var product = _uow.Products.Get(p => p.Name == createProductDto.Name);
             if (product!=null)
@@ -41,19 +42,57 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.ExistingProduct);
             }
 
-            var newProduct = _mapper.Map<Product>(createProductDto);
-            newProduct.ImagePath = imagePath; 
-            newProduct.IsOfferable = false;
-            newProduct.IsSold = false;
-            newProduct.IsActive = true;
+            var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            product = new Product
+            {
+                Name = createProductDto.Name,
+                Description = createProductDto.Description,
+                UserId = userId,
+                CategoryId = createProductDto.CategoryId,
+                UsageStatusId = createProductDto.UsageStatusId,
+                ColorId = createProductDto.ColorId,
+                ProductBrandId = createProductDto.BrandId,
+                Price=createProductDto.Price,
+                ImagePath = string.Empty,
+                IsOfferable = false,
+                IsSold = false,
+                IsActive = true
+            };
+            
 
-            _uow.Products.Add(newProduct);
+            _uow.Products.Add(product);
             _uow.Commit();
 
             return new SuccessResult(Messages.ProductAdded);
 
         }
 
+        [SecuredOperation()]
+        public IResult UploadProductImage(int id,string imagePath)
+        {
+            var product = _uow.Products.Get(c => c.Id == id 
+                                         && c.IsSold == false
+                                         && c.IsActive == true);
+            if (product is null)
+            {
+                return new ErrorResult(Messages.ProductNotFound);
+            }
+
+            var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            if (product.UserId != userId)
+            {
+                return new ErrorResult(Messages.ProductAuthDenied);
+            }
+
+            product.ImagePath = imagePath;
+
+            _uow.Products.Update(product);
+            _uow.Commit();
+
+            return new SuccessResult(Messages.ProductImageUploaded);
+        }
+
+        [SecuredOperation()]
         public IResult Delete(int id)
         {
             
@@ -77,10 +116,13 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductRemoved);
         }
 
+        [SecuredOperation(Priority = 1)]
         [ValidationAspect(typeof(UpdateProductValidator))]
-        public IResult Edit(int id, UpdateProductDto updateProductDto, string imagePath = null)
+        public IResult Edit(int id, UpdateProductDto updateProductDto)
         {
-            var product = _uow.Products.Get(c => c.Id == id && c.IsActive == true);
+            var product = _uow.Products.Get(c => c.Id == id 
+                                        && c.IsSold == false
+                                        && c.IsActive == true);
             if (product is null)
             {
                 return new ErrorResult(Messages.ProductNotFound);
@@ -98,15 +140,14 @@ namespace Business.Concrete
             product.ColorId = updateProductDto.ColorId == default ? product.ColorId : updateProductDto.ColorId;
             product.ProductBrandId = updateProductDto.BrandId == default ? product.ProductBrandId : updateProductDto.BrandId;
             product.UsageStatusId = updateProductDto.UsageStatusId == default ? product.UsageStatusId : updateProductDto.UsageStatusId;
-            product.ImagePath = imagePath is null
-                ? (updateProductDto.ImagePath==string.Empty?string.Empty:product.ImagePath) 
-                : imagePath;
-            product.IsOfferable = updateProductDto.IsOfferable == default ? product.IsOfferable : updateProductDto.IsOfferable;
+            product.IsOfferable = updateProductDto.IsOfferable == default 
+                ? (product.IsOfferable ==true?false: product.IsOfferable)
+                : updateProductDto.IsOfferable;
 
             _uow.Products.Update(product);
             _uow.Commit();
 
-            return new SuccessResult(Messages.UsageStatusUpdated);
+            return new SuccessResult(Messages.ProductUpdated);
         }
 
         public IDataResult<List<GetProductDto>> GetAllProducts()
@@ -129,6 +170,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<GetProductDto>>(productDtos);
         }
 
+        [SecuredOperation()]
         public IDataResult<List<GetProductDto>> GetAllByUserId()
         {
             var userId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
@@ -153,9 +195,12 @@ namespace Business.Concrete
             return new SuccessDataResult<GetProductDto>(productDto);
         }
 
+        [SecuredOperation()]
         public IResult BuyProduct(int id)
         {
-            var product = _uow.Products.Get(p => p.Id == id && p.IsActive == true);
+            var product = _uow.Products.Get(p => p.Id == id 
+                                        && p.IsSold == false
+                                        && p.IsActive == true);
             if (product is null)
             {
                 return new ErrorDataResult<GetProductDto>(Messages.ProductNotFound);

@@ -22,3 +22,6 @@ D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Cor
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Core\obj\Debug\net5.0\ref\Core.dll
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Core\obj\Debug\net5.0\Core.pdb
 D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Core\obj\Debug\net5.0\Core.csproj.AssemblyReference.cache
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Core\bin\Debug\net5.0\Core.runtimeconfig.json
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Core\bin\Debug\net5.0\Core.runtimeconfig.dev.json
+D:\dotnetProjects\160_Sodexo_BootCamp\MehmetAkifYildiz_Bitirme_ByCell\ByCell\Core\obj\Debug\net5.0\Core.genruntimeconfig.cache

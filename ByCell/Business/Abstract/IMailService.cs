@@ -1,4 +1,5 @@
 ﻿using Business.DTOs.Mail;
+using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,11 @@ namespace Business.Abstract
 {
     public interface IMailService
     {
-        Task SendMailAsync(MailMessageDto mailMessageDto);
+        Task CreateMailAsync(MailMessageDto mailMessageDto);
+        void ChangeMailStatus(int id, bool status);
+        Task SendMailAsync();
         Task SendRegisteredUserMailAsync(string emailAdress);
+        Task SendBlockedUserMailAsync(string emailAdress);
         MailMessage GetMailMessage(MailMessageDto mailMessageDto);
     }
 }

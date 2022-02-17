@@ -4,72 +4,6 @@
     "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\BackgroundJobs\\BackgroundJobs.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\BackgroundJobs\\BackgroundJobs.csproj",
-        "projectName": "BackgroundJobs",
-        "projectPath": "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\BackgroundJobs\\BackgroundJobs.csproj",
-        "packagesPath": "C:\\Users\\Akif\\.nuget\\packages\\",
-        "outputPath": "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\BackgroundJobs\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Akif\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Business\\Business.csproj": {
-                "projectPath": "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Business\\Business.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "dependencies": {
-            "Hangfire": {
-              "target": "Package",
-              "version": "[1.7.28, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Business\\Business.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -189,6 +123,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.3.0, )"
+            },
+            "Autofac.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.2.0, )"
+            },
             "Autofac.Extras.DynamicProxy": {
               "target": "Package",
               "version": "[6.0.0, )"
@@ -197,7 +139,21 @@
               "target": "Package",
               "version": "[10.3.6, )"
             },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.4, )"
             },
@@ -212,6 +168,14 @@
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[6.15.1, )"
+            },
+            "ServiceStack.Redis": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
@@ -282,6 +246,20 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.4, )"
@@ -392,9 +370,6 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\BackgroundJobs\\BackgroundJobs.csproj": {
-                "projectPath": "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\BackgroundJobs\\BackgroundJobs.csproj"
-              },
               "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Business\\Business.csproj": {
                 "projectPath": "D:\\dotnetProjects\\160_Sodexo_BootCamp\\MehmetAkifYildiz_Bitirme_ByCell\\ByCell\\Business\\Business.csproj"
               },

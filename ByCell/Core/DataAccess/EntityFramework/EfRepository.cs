@@ -38,7 +38,7 @@ namespace Core.DataAccess.EntityFramework
         public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null)
         {
             return filter == null
-                    ? await _context.Set<TEntity>().AsNoTracking().ToListAsync()
+                    ? await _context.Set<TEntity>().ToListAsync()
                     : await _context.Set<TEntity>().Where(filter).ToListAsync();
         }
 
@@ -68,7 +68,7 @@ namespace Core.DataAccess.EntityFramework
         public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             return filter == null
-                    ? _context.Set<TEntity>().AsNoTracking().ToList()
+                    ? _context.Set<TEntity>().ToList()
                     : _context.Set<TEntity>().Where(filter).ToList();
         }
 
