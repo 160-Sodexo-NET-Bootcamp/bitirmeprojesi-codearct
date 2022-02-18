@@ -21,6 +21,7 @@ namespace WebAPI.Controllers
             _offerService = offerService;
         }
 
+        //Kullanıcının ürününe gelen bütün teklifler listelenir
         [HttpGet("product/{productId}")]
         public IActionResult GetAllByProductId(int productId)
         {
@@ -32,6 +33,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //İsteği yapan kullanıcının yaptığı bütün teklifler listelenir
         [HttpGet("user/current")]
         public IActionResult GetAllByUserId()
         {
@@ -43,6 +45,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Teklif detayları
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -65,6 +68,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Tekrar teklif verilir
         [HttpPut("{offerId}/reoffer")]
         public IActionResult ChangeOffer(int offerId, [FromBody]SendOfferDto updateOfferDto)
         {
@@ -76,6 +80,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Teklif değerlendirilir
         [HttpPut("{offerId}/confirm")]
         public IActionResult ConfirmOffer(int offerId, bool confirmStatus)
         {
@@ -87,6 +92,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Teklif geri çekilir
         [HttpDelete("{offerId}/back")]
         public IActionResult GetBackOffer(int offerId)
         {

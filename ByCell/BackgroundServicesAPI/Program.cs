@@ -21,10 +21,10 @@ namespace BackgroundServicesAPI
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory())//Autofac service provider olarak atandý
                 .ConfigureContainer<ContainerBuilder>(builder =>
                 {
-                    builder.RegisterModule(new AutofacBusinessModule());
+                    builder.RegisterModule(new AutofacBusinessModule());//Servisler eklendi
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

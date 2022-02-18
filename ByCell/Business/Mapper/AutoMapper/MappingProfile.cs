@@ -27,6 +27,7 @@ namespace Business.Mapper.AutoMapper
                 .ForMember(dest => dest.IsSold, opt => opt.MapFrom(src => src.IsSold == false
                          ? "Satışta!"
                          : "Satıldı!"));
+
             CreateMap<Offer, GetOfferDto>()
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName))
                 .ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Product.Name))

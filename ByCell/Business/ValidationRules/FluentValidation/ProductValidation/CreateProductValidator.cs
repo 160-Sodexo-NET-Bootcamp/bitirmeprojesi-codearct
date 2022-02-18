@@ -13,9 +13,9 @@ namespace Business.ValidationRules.FluentValidation.ProductValidation
         public CreateProductValidator()
         {
             RuleFor(product => product.Name).NotEmpty().WithMessage("Ad alanı boş bırakılamaz!");
-            RuleFor(product => product.Name).MaximumLength(100);
+            RuleFor(product => product.Name).MaximumLength(100).WithMessage("En fazla 100 karakter girilebilir!"); 
             RuleFor(product => product.Description).NotEmpty().WithMessage("Tanıtım alanı boş bırakılamaz!");
-            RuleFor(product => product.Description).MaximumLength(500);
+            RuleFor(product => product.Description).MaximumLength(500).WithMessage("En fazla 500 karakter girilebilir!");
             RuleFor(product => product.CategoryId).GreaterThan(0).WithMessage("Bir kategori seçiniz!");
             RuleFor(product => product.UsageStatusId).GreaterThan(0).WithMessage("Ürün kullanım durumunu seçiniz!");
             RuleFor(product => product.Price).GreaterThan(0).WithMessage("Bir fiyat giriniz!");

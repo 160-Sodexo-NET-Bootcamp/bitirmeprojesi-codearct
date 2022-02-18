@@ -19,6 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         }
 
+        //Generic repository de olmayan birleştirilmiş tablolar ile bütün ürünleri verilen filtreye göre getirme
         public List<Product> GetAllProducts(Expression<Func<Product, bool>> filter = null)
         {
             return filter == null
@@ -39,6 +40,7 @@ namespace DataAccess.Concrete.EntityFramework
                             .ToList();
         }
 
+        //Generic repository de olmayan birleştirilmiş tablolar ile bir ürünü verilen filtreye göre getirme
         public Product GetProduct(Expression<Func<Product, bool>> filter)
         {
             return _dbSet.Include(p => p.Category)

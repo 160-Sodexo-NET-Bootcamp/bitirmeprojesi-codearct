@@ -10,6 +10,7 @@ namespace Core.Extensions.Claims
 {
     public static class ClaimExtensions
     {
+        //HttpContext ile ulaşılan User ın ilgili claimtype ına verilen parametreyi atayan extension
         public static void AddNameIdentifier(this ICollection<Claim> claims, string nameIdentifier)
         {
             claims.Add(new Claim(ClaimTypes.NameIdentifier, nameIdentifier));

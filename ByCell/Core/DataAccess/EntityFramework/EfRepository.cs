@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess.EntityFramework
 {
+    //Entityframe work generic repesitory
     public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity, new()
     {
         protected DbContext _context;

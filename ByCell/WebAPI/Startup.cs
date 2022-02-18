@@ -42,6 +42,7 @@ namespace WebAPI
 
             services.AddControllers();
 
+            //Authentication
             var tokenConfig = Configuration.GetSection("TokenConfig").Get<TokenConfig>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

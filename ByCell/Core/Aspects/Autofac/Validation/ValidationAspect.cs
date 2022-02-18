@@ -15,6 +15,7 @@ namespace Core.Aspects.Autofac.Validation
         private Type _validatorType;
         public ValidationAspect(Type validatorType)
         {
+            //Method başında verilen Type bir Validator type değilse hata dönüyor
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
                 throw new Exception("Bu bir doğrulama değil!");
@@ -22,11 +23,16 @@ namespace Core.Aspects.Autofac.Validation
 
             _validatorType = validatorType;
         }
+        //İlgili methodun başında çalışmaya başlıyacak
         protected override void OnBefore(IInvocation invocation)
         {
+            //Verilen Validator için bir instance oluşturacak
             var validator = (IValidator)Activator.CreateInstance(_validatorType);
+            //Validator'ın validasyon modelini yakalıcak
             var entityType = _validatorType.BaseType.GetGenericArguments()[0];
+            //Bu yakaladığı modeli methodumuzun(invocation) parametrelerinde arayacak
             var entities = invocation.Arguments.Where(t => t.GetType() == entityType);
+            //Bulduğu modellerin validasyonunu yapacak
             foreach (var entity in entities)
             {
                 ValidationTool.Validate(validator, entity);

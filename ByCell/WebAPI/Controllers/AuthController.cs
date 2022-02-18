@@ -22,6 +22,7 @@ namespace WebAPI.Controllers
             _mailService = mailService;
         }
 
+        //Üye giriş
         [HttpPost("login")]
         public ActionResult Login(UserForLoginDto userForLoginDto)
         {
@@ -34,6 +35,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Üye kayıt
         [HttpPost("register")]
         public ActionResult Register(UserForRegisterDto userForRegisterDto)
         {
@@ -46,6 +48,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Refresh token üretme
         [HttpPut("refresh")]
         public ActionResult RefreshToken(string existingRefreshToken)
         {

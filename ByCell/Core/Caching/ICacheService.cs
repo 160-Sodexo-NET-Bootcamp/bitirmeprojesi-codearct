@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Caching
 {
+    //Generic Cache işlemleri
     public interface ICacheService
     {
         T Get<T>(string key);

@@ -45,6 +45,7 @@ namespace BackgroundServicesAPI
             services.AddHangfire(config => config.UseSqlServerStorage(Configuration["ConnectionStrings:HangfireConnection"]));
             services.AddHangfireServer(option =>
             {
+                //Minimum çalýþma aralýðý 2 saniye olarak ayarlandý
                 option.SchedulePollingInterval = TimeSpan.FromSeconds(2);
             });
         }
@@ -67,11 +68,7 @@ namespace BackgroundServicesAPI
                 DashboardTitle = "ByCell Hangfire DashBoard"
             });
 
-            /*app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });*/
-
+            //Tekrar eden hangfire arka plan iþi
             RecurringJobs.SendMailFromDatabase();
 
         }

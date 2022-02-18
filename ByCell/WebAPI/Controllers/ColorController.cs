@@ -11,6 +11,7 @@ namespace WebAPI.Controllers
 {
     [Route("colors")]
     [ApiController]
+    //Standart CRUD işlemler
     public class ColorController : ControllerBase
     {
         private readonly IColorService _colorService;

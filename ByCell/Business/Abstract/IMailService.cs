@@ -16,6 +16,5 @@ namespace Business.Abstract
         Task SendMailAsync();
         Task SendRegisteredUserMailAsync(string emailAdress);
         Task SendBlockedUserMailAsync(string emailAdress);
-        MailMessage GetMailMessage(MailMessageDto mailMessageDto);
     }
 }

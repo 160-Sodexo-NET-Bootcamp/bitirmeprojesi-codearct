@@ -19,6 +19,8 @@ using System.Threading.Tasks;
 
 namespace Business.DependencyResolvers
 {
+    //Business katmanındaki her proje için değişen servislerin Autofac üzerinden ayağa kaldırılması
+    //Program.cs de ayağa kaldırılır
     public class AutofacBusinessModule : Module
     {
         protected override void Load(ContainerBuilder builder)
@@ -54,11 +56,13 @@ namespace Business.DependencyResolvers
                     .EnableInterfaceInterceptors(
                         new ProxyGenerationOptions()
                         {
+                            //MethodInterceptionBaseAttribute imzasına sahip sınıflardan proxy üretilir
                             Selector = new AspectInterceptorSelector()
                         }
                     )
                     .SingleInstance();
 
+            //AutoMapper
             builder.Register(context => new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<MappingProfile>();

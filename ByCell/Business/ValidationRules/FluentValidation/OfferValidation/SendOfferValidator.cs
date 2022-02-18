@@ -12,7 +12,9 @@ namespace Business.ValidationRules.FluentValidation.OfferValidation
     {
         public SendOfferValidator()
         {
+            //OfferedPricePercentage boş olursa OfferedPrice boş olamaz
             RuleFor(offer => offer.OfferedPrice).NotEmpty().When(offer => offer.OfferedPricePercentage == default);
+            //OfferedPrice boş olursa OfferedPricePercentage boş olamaz
             RuleFor(offer => offer.OfferedPricePercentage).NotEmpty().When(offer => offer.OfferedPrice == default);
         }
     }

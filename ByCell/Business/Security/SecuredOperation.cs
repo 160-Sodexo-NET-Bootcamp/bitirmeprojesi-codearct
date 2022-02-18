@@ -15,6 +15,7 @@ using System.Security;
 
 namespace Business.Security
 {
+    //Interceptor for AOP
     public class SecuredOperation : MethodInterception
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -22,9 +23,9 @@ namespace Business.Security
         public SecuredOperation()
         {
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
-
         }
 
+        //İsteği yapan kullanıcı giriş yapmış mı kontrolü yapar
         protected override void OnBefore(IInvocation invocation)
         {
             var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

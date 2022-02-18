@@ -11,7 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Business.Concrete
-{    
+{   
+    //Standart CRUD işlemleri yapılır
     public class CategoryService : ICategoryService
     {
         private readonly IUnitOfWork _uow;
@@ -21,6 +22,7 @@ namespace Business.Concrete
             _uow = uow;
         }
 
+        //Yetki kontrolü yapılır
         [SecuredOperation()]
         public IResult Create(string name)
         {
@@ -41,6 +43,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CategoryAdded);
         }
 
+        //Yetki kontrolü yapılır
         [SecuredOperation()]
         public IResult Delete(int id)
         {
@@ -58,6 +61,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CategoryRemoved);
         }
 
+        //Yetki kontrolü yapılır
         [SecuredOperation()]
         public IResult Edit(int id,string name)
         {

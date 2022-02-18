@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackgroundServicesAPI.BackgroundJobs.Services.RecurringJobs
 {
+    //Hangfire için mail gönderim servisi
     public class SendUserMail
     {
         private readonly IMailService _mailService;

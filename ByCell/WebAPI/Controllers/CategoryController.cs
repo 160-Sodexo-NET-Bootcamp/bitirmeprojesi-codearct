@@ -11,6 +11,7 @@ namespace WebAPI.Controllers
 {
     [Route("categories")]
     [ApiController]
+    //Standart CRUD işlemler
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;

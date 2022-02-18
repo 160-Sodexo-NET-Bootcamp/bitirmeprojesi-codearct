@@ -19,6 +19,7 @@
         ```
         git clone https://github.com/160-Sodexo-NET-Bootcamp/bitirmeprojesi-codearct.git
         ```
+        appsettings.json veritabanı ve hangfire veritabanı bağlantı ayarlarını kendinize göre yapılandırın.
     - Redis
         - [Redis](https://github.com/microsoftarchive/redis/releases) msi paketini indiriniz.Paketi indirdikten sonra kurulumu yapınız.
             Terminal üzerinden 

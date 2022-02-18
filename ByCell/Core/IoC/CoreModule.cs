@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Core.IoC
 {
+    //Merkezi service container
     public class CoreModule : ICoreModule
     {
         public void Load(IServiceCollection services)

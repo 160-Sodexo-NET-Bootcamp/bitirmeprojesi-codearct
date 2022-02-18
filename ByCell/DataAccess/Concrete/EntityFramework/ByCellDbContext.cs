@@ -24,8 +24,11 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<SentMail> SentMails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Veritabanında Offers tablosunun OfferedPercentage kolonunun decimal türünün formunu belirliyor
             modelBuilder.Entity<Offer>().Property(c => c.OfferedPricePercentage).HasColumnType("decimal(5, 2)");
+            //Veritabanında Offers tablosunun OfferedPrice kolonunun decimal türünün formunu belirliyor
             modelBuilder.Entity<Offer>().Property(c => c.OfferedPrice).HasColumnType("decimal(10, 2)");
+            //Veritabanında Products tablosunun Price kolonunun decimal türünün formunu belirliyor
             modelBuilder.Entity<Product>().Property(c => c.Price).HasColumnType("decimal(10, 2)");
             base.OnModelCreating(modelBuilder);
         }

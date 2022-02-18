@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess
 {
+    //Generic repository
     public interface IRepository<T> where T : class, IEntity, new()
     {
         Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null);

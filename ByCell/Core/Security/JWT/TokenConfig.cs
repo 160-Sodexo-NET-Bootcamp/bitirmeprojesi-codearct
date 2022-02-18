@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Security.JWT
 {
+    //appsettings den okuma işlemi için Configuration model
     public class TokenConfig
     {
         public string Audience { get; set; }

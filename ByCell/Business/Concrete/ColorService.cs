@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
+    //Standart CRUD işlemleri yapılır
     public class ColorService:IColorService
     {
         private readonly IUnitOfWork _uow;
@@ -21,6 +22,7 @@ namespace Business.Concrete
             _uow = uow;
         }
 
+        //Yetki kontrolü yapılır
         [SecuredOperation()]
         public IResult Create(string name)
         {
@@ -41,6 +43,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ColorAdded);
         }
 
+        //Yetki kontrolü yapılır
         [SecuredOperation()]
         public IResult Delete(int id)
         {
@@ -58,6 +61,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ColorRemoved);
         }
 
+        //Yetki kontrolü yapılır
         [SecuredOperation()]
         public IResult Edit(int id, string name)
         {

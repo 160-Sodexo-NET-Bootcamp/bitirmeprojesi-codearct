@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Security.JWT
 {
+    //Token model
     public class AccessToken
     {
         public string Token { get; set; }

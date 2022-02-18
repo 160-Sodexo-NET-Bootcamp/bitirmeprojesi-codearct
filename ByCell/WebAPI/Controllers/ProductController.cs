@@ -27,6 +27,7 @@ namespace WebAPI.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
+        //Bütün ürünler listelenir
         [HttpGet]
         public IActionResult GetAllProducts()
         {
@@ -34,6 +35,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //İsteği yapan kullanıcıya ait ürünler listelenir
         [HttpGet("user/current")]
         public IActionResult GetAllProductsByUserId()
         {
@@ -45,6 +47,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Ürün detayları gösterilir
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -56,6 +59,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Kategoriye göre ürünler listelenir
         [HttpGet("category/{categoryId}")]
         public IActionResult GetAllByCategoryId(int categoryId)
         {
@@ -67,6 +71,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Ürün ekle
         [HttpPost]
         public IActionResult Create([FromBody] CreateProductDto createProductDto)
         {
@@ -78,6 +83,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Ürün fotoğrafı yükle
         [HttpPut("{productId}/image")]
         public IActionResult UploadProductImage(int productId,IFormFile ImageFile)
         {
@@ -108,6 +114,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        //Ürün güncelle
         [HttpPut("{id}")]
         public IActionResult Edit(int id,[FromBody] UpdateProductDto updateProductDto)
         {
@@ -119,6 +126,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Ürün satın al
         [HttpPut("{id}/buy")]
         public IActionResult BuyProduct(int id)
         {
@@ -130,6 +138,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        //Ürün sil
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

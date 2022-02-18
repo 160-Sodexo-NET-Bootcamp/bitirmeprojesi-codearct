@@ -21,9 +21,12 @@ namespace Core.Security.JWT
         public TokenHelper(IConfiguration configuration)
         {
             Configuration = configuration;
+            //İnject edilen Configuration ile appsettings altındaki TokenConfig objesi bizim TokenConfig objemizi doldurur
             _tokenConfig = Configuration.GetSection("TokenConfig").Get<TokenConfig>();
 
         }
+
+        //Parametresine aldığı User model bilgileriyle bu user a ait AccessToken objesi üretir.
         public AccessToken CreateToken(User user)
         {
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenConfig.AccessTokenExpiration);
@@ -42,6 +45,7 @@ namespace Core.Security.JWT
 
         }
 
+        //JWT token üretilir
         public JwtSecurityToken CreateJwtSecurityToken(TokenConfig tokenConfig, User user,
             SigningCredentials signingCredentials)
         {
@@ -49,7 +53,7 @@ namespace Core.Security.JWT
                 issuer: tokenConfig.Issuer,
                 audience: tokenConfig.Audience,
                 expires: _accessTokenExpiration,
-                claims: SetClaims(user),
+                claims: SetClaims(user),//UserId sini içinde tutan claim atanır
                 notBefore: DateTime.Now,
                 signingCredentials: signingCredentials
             );
@@ -60,6 +64,7 @@ namespace Core.Security.JWT
             return Guid.NewGuid().ToString();
         }
 
+        //Verilen user a göre userIdsini tutan claim üretilir
         private IEnumerable<Claim> SetClaims(User user)
         {
             var claims = new List<Claim>();

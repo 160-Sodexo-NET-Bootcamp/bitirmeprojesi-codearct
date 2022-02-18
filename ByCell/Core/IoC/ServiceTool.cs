@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Core.IoC
 {
+    //Verilen servis koleksiyonlarını hizmete sunar
     public static class ServiceTool
     {
         public static IServiceProvider ServiceProvider { get; private set; }
-
+       
         public static IServiceCollection Create(IServiceCollection services)
         {
             ServiceProvider = services.BuildServiceProvider();

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
+    //Standart CRUD işlemleri yapılır
     public class ProductBrandService:IProductBrandService
     {
         private readonly IUnitOfWork _uow;
@@ -21,6 +22,7 @@ namespace Business.Concrete
             _uow = uow;
         }
 
+        //Yetkilendirme kontrolü yapılır
         [SecuredOperation()]
         public IResult Create(string name)
         {
@@ -41,6 +43,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductBrandAdded);
         }
 
+        //Yetkilendirme kontrolü yapılır
         [SecuredOperation()]
         public IResult Delete(int id)
         {
@@ -58,6 +61,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductBrandRemoved);
         }
 
+        //Yetkilendirme kontrolü yapılır
         [SecuredOperation()]
         public IResult Edit(int id, string name)
         {

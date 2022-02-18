@@ -11,6 +11,7 @@ namespace WebAPI.Controllers
 {
     [Route("usagestatuses")]
     [ApiController]
+    //Standart CRUD işlemler
     public class UsageStatusController : ControllerBase
     {
         private readonly IUsageStatusService _usageStatusService;

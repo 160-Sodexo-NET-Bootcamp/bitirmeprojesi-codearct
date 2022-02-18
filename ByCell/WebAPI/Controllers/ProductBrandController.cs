@@ -11,6 +11,7 @@ namespace WebAPI.Controllers
 {
     [Route("productbrands")]
     [ApiController]
+    //Standart CRUD işlemler
     public class ProductBrandController : ControllerBase
     {
         private readonly IProductBrandService _productBrandService;
