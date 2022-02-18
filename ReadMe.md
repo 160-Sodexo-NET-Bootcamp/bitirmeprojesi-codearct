@@ -93,7 +93,7 @@
     - Kullanıcılar sisteme giriş yapabilirler.
         - Email boş olamaz ve valid olmalı.
         - Şifre boş olamaz; en az 8 en fazla 20 karakter uzunluğunda olmalı.
-    -Giriş işlemi başarılı ise token ve refresh token üretilir.
+    - Giriş işlemi başarılı ise token ve refresh token üretilir.
 ![Token](./ReadMePhotos/Token.JPG)
     - Swagger Authorize sekmesi üzerinden tüm kimlik doğrulama gerektiren isteklerde Header'a Bearer token eklenir.
 ![Bearer Token](./ReadMePhotos/SwaggerAuth.JPG)

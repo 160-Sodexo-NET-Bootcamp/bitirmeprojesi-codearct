@@ -3,6 +3,7 @@ using Business.Abstract;
 using Business.Concrete;
 using Business.Mapper.AutoMapper;
 using Core.IoC;
+using Core.Logging.Middleware;
 using Core.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -29,12 +30,11 @@ namespace WebAPI
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -85,6 +85,9 @@ namespace WebAPI
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            //Merkezi exception console log middleware
+            app.UseMiddleware<CustomExceptionMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

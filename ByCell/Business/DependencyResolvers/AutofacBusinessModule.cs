@@ -8,6 +8,7 @@ using Castle.DynamicProxy;
 using Core.Caching;
 using Core.Caching.Redis;
 using Core.Interceptors;
+using Core.Logging;
 using Core.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -45,6 +46,9 @@ namespace Business.DependencyResolvers
             builder.RegisterType<ProductBrandService>().As<IProductBrandService>().InstancePerLifetimeScope();
             builder.RegisterType<UsageStatusService>().As<IUsageStatusService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
+
+            //Logging
+            builder.RegisterType<ConsoleLogger>().As<ICustomLogger>().SingleInstance();
 
             //Redis
             builder.RegisterType<RedisCacheService>().As<ICacheService>().SingleInstance();
